@@ -3,7 +3,7 @@ services:
     name: school-api
     env: node
     region: singapore  # Choose a region closest to your users
-    buildCommand: npm install
+    buildCommand: npm ci && npm install
     startCommand: npm start
     envVars:
       - key: NODE_ENV
