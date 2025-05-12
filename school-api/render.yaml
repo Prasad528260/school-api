@@ -10,25 +10,34 @@ services:
         value: production
       - key: PORT
         value: 10000
-    # Database configuration - you'll need to create a database in Render and update these values
-    # Uncomment and update these after creating your database in Render
-    # envVars:
-    #   - key: DB_HOST
-    #     fromDatabase:
-    #       name: school-db
-    #       property: connectionString
-    #   - key: DB_USER
-    #     fromDatabase:
-    #       name: school-db
-    #       property: username
-    #   - key: DB_PASSWORD
-    #     fromDatabase:
-    #       name: school-db
-    #       property: password
-    #   - key: DB_NAME
-    #     fromDatabase:
-    #       name: school-db
-    #       property: database
+      - key: RENDER
+        value: 'true'
+      # Use the internal database URL provided by Render
+      - key: DATABASE_URL
+        fromDatabase:
+          name: school-db
+          property: connectionString
+      # For backward compatibility, also set individual connection parameters
+      - key: DB_HOST
+        fromDatabase:
+          name: school-db
+          property: host
+      - key: DB_PORT
+        fromDatabase:
+          name: school-db
+          property: port
+      - key: DB_USER
+        fromDatabase:
+          name: school-db
+          property: user
+      - key: DB_PASSWORD
+        fromDatabase:
+          name: school-db
+          property: password
+      - key: DB_NAME
+        fromDatabase:
+          name: school-db
+          property: database
 
 databases:
   - name: school-db
