@@ -2,6 +2,7 @@ services:
   - type: web
     name: school-api
     env: node
+    region: singapore  # Choose a region closest to your users
     buildCommand: npm install
     startCommand: npm start
     envVars:
@@ -9,22 +10,25 @@ services:
         value: production
       - key: PORT
         value: 10000
-      - key: DB_HOST
-        fromDatabase:
-          name: school-db
-          property: connectionString
-      - key: DB_USER
-        fromDatabase:
-          name: school-db
-          property: username
-      - key: DB_PASSWORD
-        fromDatabase:
-          name: school-db
-          property: password
-      - key: DB_NAME
-        fromDatabase:
-          name: school-db
-          property: database
+    # Database configuration - you'll need to create a database in Render and update these values
+    # Uncomment and update these after creating your database in Render
+    # envVars:
+    #   - key: DB_HOST
+    #     fromDatabase:
+    #       name: school-db
+    #       property: connectionString
+    #   - key: DB_USER
+    #     fromDatabase:
+    #       name: school-db
+    #       property: username
+    #   - key: DB_PASSWORD
+    #     fromDatabase:
+    #       name: school-db
+    #       property: password
+    #   - key: DB_NAME
+    #     fromDatabase:
+    #       name: school-db
+    #       property: database
 
 databases:
   - name: school-db
